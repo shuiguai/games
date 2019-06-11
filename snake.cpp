@@ -5,7 +5,7 @@
 #include<windows.h>
 #include<conio.h>
 using namespace std;
-const int MaxMap = 21;
+const int MaxMap = 8;
 char map[MaxMap][MaxMap];
 int snakeLength = 4;
 char direction = 'd';
@@ -56,7 +56,7 @@ bool move(){
 	int nextX = 0, nextY = 0, tailX = p->x, tailY = p->y;
 	if (_kbhit()){
 		letter = _getch();
-	
+
 
 		if (letter == 'w' || letter == 's' || letter == 'a' || letter == 'd'){
 			if (0 != (direction - letter)){
@@ -124,10 +124,11 @@ void initial(){
 			 map[i][j]=' ';
 		}
 	}
-	head = { 10, 10, NULL };
-	body1 = { 10, 9, &head };
-	body2 = { 10, 8, &body1 };
-	tail = { 10, 7, &body2 };
+	int centerpoint = MaxMap / 2;
+	head = { centerpoint, centerpoint, NULL };
+	body1 = { centerpoint, centerpoint-1, &head };
+	body2 = { centerpoint, centerpoint - 2, &body1 };
+	tail = { centerpoint, centerpoint - 3, &body2 };
 
 	for (int i = 0; i < MaxMap; i++){
 		map[0][i] = 'W';
