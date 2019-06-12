@@ -4,8 +4,9 @@
 #include <stdlib.h>
 #include<windows.h>
 #include<conio.h>
+#include<string>
 using namespace std;
-const int MaxMap = 8;
+const int MaxMap = 20;
 char map[MaxMap][MaxMap];
 int snakeLength = 4;
 char direction = 'd';
@@ -16,9 +17,23 @@ struct snake{
 }head,body1,body2,tail;
 
 void printmap(){
+	string wall = "®Å",head = "°Ò",body ="°Ú",food = "°Ô",blank = "  ";
 	for (int i = 0; i < MaxMap; i++){
 		for (int j = 0; j < MaxMap; j++){
-			cout << map[i][j];
+			if ('W' == map[i][j]){
+				cout << wall;
+			}
+			else if ('H' == map[i][j]){
+				cout << head;
+			}
+			else if ('B' == map[i][j]){
+				cout << body;
+			}
+			else if ('f' == map[i][j]){
+				cout <<food;
+			}else 
+				cout << blank;
+
 		}
 		cout << endl;
 	}
